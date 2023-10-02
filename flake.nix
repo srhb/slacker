@@ -14,10 +14,10 @@
         pkgs,
         ...
       }: {
-        packages.default = pkgs.haskellPackages.callCabal2nix "slacker" ./. {};
+        packages.default = pkgs.haskell.packages.ghc94.callCabal2nix "slacker" ./. {};
         devShells.default = pkgs.mkShell {
           inputsFrom = [self'.packages.default];
-          packages = with pkgs.haskellPackages; [
+          packages = with pkgs.haskell.packages.ghc94; [
             haskell-language-server
             cabal-install
           ];
